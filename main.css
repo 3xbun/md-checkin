@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Prompt', sans-serif;
+}
+
+header {
+    text-align: center;
+    background-color: #14213D;
+    padding: 1em;
+    color: #E5E5E5;
+    margin-bottom: 3em;
+}
+
+.container {
+    width: 85vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+footer {
+    position: fixed;
+    text-align: center;
+    background-color: #14213D;
+    padding: 1em;
+    color: #E5E5E5;
+    bottom: 0;
+    width: 100%;
+}
+
+#left {
+    width: 100%;
+}
+
+.searchbar {
+    background: white;
+    margin: 1em auto;
+    width: 90%;
+    font-size: 1.5em;
+    border-radius: 1em;
+    padding: .2em 1em;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.searchbar input {
+    font-size: inherit;
+    border: none;
+    width: 85%;
+}
+
+.search-icon {
+    color: #14213D;
+}
+
+#right {
+    width: 100%;
+}
+
+.checkedIn {
+    background-color: #E5E5E5;
+    overflow: scroll;
+    height: 70vh;
+    text-align: center;
+    border-radius: 1em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.header {
+    position: relative;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+thead {
+    color: #14213D;
+}
+
+.name {
+    text-align: left;
+}
+
+.row td{
+    font-weight: bold;
+}
+
+.copy {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2%;
+    color: #14213D;
+    cursor: pointer;
+}
+
+.card {
+    background-color: #E5E5E5;
+    border-radius: 1em;
+    width: 70%;
+    margin: auto;
+    padding: 2em;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.profile-img {
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.signIn {
+    cursor: pointer;
+    font-size: 1.5em;
+    background-color: #FCA311;
+    padding: .5em 1em;
+    border-radius: 1em;
+}
+
+.studentID {
+    color: #FCA311;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+  }
