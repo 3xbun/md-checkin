@@ -1,161 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CheckIn by 3xbun</title>
-    <link rel="stylesheet" href="main.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-  </head>
-  <body>
-    <div id="app">
-      <header>
-        <h1>Check In <i class="fa-solid fa-user-check"></i></h1>
-      </header>
 
-      <div class="container">
-        <div id="left">
-          <div class="searchbar">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input
-              type="text"
-              placeholder=" Scan your card..."
-              v-model="searchQuery"
-              v-on:keyup.enter="onSubmit"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD CheckIn</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
 
-          <!-- <div class="information" v-if="searchQuery !== ''"> -->
-          <div
-            class="information animate__animated animate__zoomInUp animate__faster"
-            v-if="searchQuery !== ''"
-          >
-            <div class="card">
-              <div class="profile-img">
-                <img
-                  :src="`https://avatars.dicebear.com/api/female/${filteredStudent.stdID}.svg`"
-                  alt=""
-                />
-              </div>
-              <h1>{{filteredStudent.fullName}}</h1>
-              <h2 class="studentID">{{filteredStudent.stdID}}</h2>
-              <hr />
-              <p>Check-In Time: {{checkInTime}}</p>
-              <i
-                class="fa-solid fa-right-to-bracket signIn"
-                :onclick="onSubmit"
-              ></i>
-            </div>
-          </div>
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="search">
+        <p class="searchBox">{{searchID}}</p>
+        <p class="error">{{err}}</p>
+        <div class="student" v-if="checkedLst[0]">
+          <p>{{checkedLst[0].id}} | {{checkedLst[0].name}}</p>
         </div>
-        <div id="right">
-          <div class="checkedIn">
-            <div class="header">
-              <h1>Checked In</h1>
-              <div class="copy" :onclick="copyToClipboard">
-                <i class="fa-solid fa-copy"></i>
-              </div>
-            </div>
-            <hr />
-            <table id="checkIn">
-              <thead>
-                <td>Student ID</td>
-                <td class="name">Full Name</td>
-                <td>Time</td>
-              </thead>
-              <tr v-for="std in sortedcheckedIn" :key="std.stdID" class="row">
-                <td>{{std.stdID}}</td>
-                <td class="name">{{std.fullName}}</td>
-                <td>{{std.checkInTime}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
+        <ul class="numpad">
+          <li @click="add(1)">1</li>
+          <li @click="add(2)">2</li>
+          <li @click="add(3)">3</li>
+          <li @click="add(4)">4</li>
+          <li @click="add(5)">5</li>
+          <li @click="add(6)">6</li>
+          <li @click="add(7)">7</li>
+          <li @click="add(8)">8</li>
+          <li @click="add(9)">9</li>
+          <li @click="add(0)">0</li>
+          <li @click="del()" class="delete"><ion-icon name="backspace-outline"></ion-icon>
+          <li @click="checkIn(searchID)" class="enter"><ion-icon name="enter-outline"></ion-icon></li>
+          </li>
+        </ul>
+        <input class="cardInput" type="text" v-model="cardID" @keyup.enter="searchCard()"
+          placeholder="Click here to scan card">
       </div>
-      <footer>
-        <p>I'm too lazy to read all of your name. So, I build this app.</p>
-        <p>&copy; 2022 Bunnasorn Kaewsiri. All Right Reserved</p>
-      </footer>
+      <div class="students-list">
+        <strong>รายชื่อ</strong>
+        <table>
+          <tbody>
+            <tr v-for="(student) in checkedLst">
+              <td>{{student.id}}</td>
+              <td>{{student.name}}</td>
+              <td>{{student.time}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 
-    <script type="importmap">
-      {
-        "imports": {
-          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-        }
-      }
-    </script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="./js/Students.js"></script>
+  <script src="./js/Students-data.js"></script>
+  <script src="./js/main.js"></script>
+</body>
 
-    <script src="./students.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.2/dayjs.min.js"
-      integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <script type="module">
-      import { createApp, ref, computed, onMounted } from "vue";
-
-      createApp({
-        setup() {
-          const searchQuery = ref("");
-          const checkedIn = ref([]);
-          let checkInTime = ref(dayjs().format("HH:mm:ss"));
-
-          const filteredStudent = computed(() => {
-            return students.filter((std) =>
-              std.stdID.startsWith(searchQuery.value)
-            )[0];
-          });
-
-          const sortedcheckedIn = computed(() => {
-            return checkedIn.value.slice().sort(function (a, b) {
-              return a.checkInTime < b.checkInTime ? 1 : -1;
-            });
-          });
-
-          const onSubmit = () => {
-            checkedIn.value.push({
-              stdID: filteredStudent.value.stdID,
-              fullName: filteredStudent.value.fullName,
-              checkInTime: String(checkInTime.value),
-            });
-            searchQuery.value = "";
-          };
-
-          const copyToClipboard = () => {
-            navigator.clipboard.writeText(JSON.stringify(checkedIn.value));
-          };
-
-          onMounted(() => {
-            setInterval(() => {
-              checkInTime.value = dayjs().format("HH:mm:ss");
-            }, 1000);
-          });
-
-          return {
-            copyToClipboard,
-            searchQuery,
-            students,
-            filteredStudent,
-            onSubmit,
-            checkInTime,
-            sortedcheckedIn,
-          };
-        },
-      }).mount("#app");
-    </script>
-  </body>
 </html>
