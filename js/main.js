@@ -1,3 +1,5 @@
+document.activeElement.blur();
+
 const { createApp, ref } = Vue
 
 createApp({
@@ -10,7 +12,6 @@ createApp({
 
         const del = () => {
             searchID.value = searchID.value.replace(/.$/, '')
-            console.log(searchID.value);
             err.value = ''
         };
 
@@ -38,6 +39,7 @@ createApp({
                         time: `${pad(date.getHours())}:${pad(date.getMinutes())}`
                     })
                     searchID.value = ''
+                    cardID.value = ''
                 } else {
                     err.value = 'Student not found'
                 }
@@ -54,11 +56,17 @@ createApp({
         }
 
         const searchStudent = (id) => {
-            console.log(id);
             const result = StudentsData.filter(std => std.studentID === id)[0]
             if (result) {
                 student.value = result
             }
+        }
+
+        const saveFile = () => {
+            const ws = XLSX.utils.json_to_sheet(checkedLst.value)
+            const wb = XLSX.utils.book_new()
+            XLSX.utils.book_append_sheet(wb, ws, "Checked In")
+            XLSX.writeFile(wb, "Excel.xlsx")
         }
 
         return {
@@ -67,6 +75,7 @@ createApp({
             checkedLst,
             student,
             err,
+            saveFile,
             searchCard,
             checkIn,
             del,

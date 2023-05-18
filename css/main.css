@@ -103,3 +103,19 @@ li:hover {
 .cardInput:focus {
     outline: none;
 }
+
+.saveFile {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
+    background-color: #00B2CA;
+    width: 1.5em;
+    height: 1.5em;
+    color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding-bottom: .1em;
+    font-size: 30px;
+}
