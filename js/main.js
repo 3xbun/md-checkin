@@ -69,12 +69,17 @@ createApp({
             XLSX.writeFile(wb, "Excel.xlsx")
         }
 
+        const remove = (index) => {
+            checkedLst.value.splice(index, 1)
+        }
+
         return {
             searchID,
             cardID,
             checkedLst,
             student,
             err,
+            remove,
             saveFile,
             searchCard,
             checkIn,

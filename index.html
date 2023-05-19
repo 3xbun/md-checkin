@@ -45,10 +45,11 @@
         <strong>รายชื่อ</strong>
         <table>
           <tbody>
-            <tr v-for="(student) in checkedLst">
+            <tr v-for="(student, index) in checkedLst">
               <td>{{student.id}}</td>
               <td>{{student.name}}</td>
               <td>{{student.time}}</td>
+              <td class="delete" @click="remove(index)"><ion-icon name="trash-outline"></ion-icon></td>
             </tr>
           </tbody>
         </table>

@@ -119,3 +119,17 @@ li:hover {
     padding-bottom: .1em;
     font-size: 30px;
 }
+
+tr {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.delete {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
