@@ -26,6 +26,7 @@ createApp({
 
         const checkIn = (std) => {
             err.value = ''
+            document.querySelector(".cardInput").focus()
 
             if (std.length < 5) {
                 err.value = "Please Enter Student ID"
