@@ -133,3 +133,7 @@ tr {
     align-items: center;
     margin-left: auto;
 }
+
+td.name {
+    width: 100%;
+}
