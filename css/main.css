@@ -116,7 +116,6 @@ li:hover {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    padding-bottom: .1em;
     font-size: 30px;
 }
 
@@ -135,5 +134,9 @@ tr {
 }
 
 td.name {
-    width: 100%;
+    width: 90%;
+}
+
+td.time {
+    width: 10%;
 }
